@@ -1,0 +1,19 @@
+name: Dataset validation
+on:
+  push:
+    branches:
+      - main
+jobs:
+  validation:
+    runs-on:ubuntu-latest
+    steps:
+      - name: Chcekout code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+      with:
+        python-version:"3.9"
+      - name: Install dependencies
+        uses:pip install pandas
+      - name: Run validation
+        run:python scripts/validate.py
